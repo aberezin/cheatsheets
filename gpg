@@ -186,3 +186,8 @@
     --armor \
     --output somefile.gpg \
     somefile # to decrypt
+
+  Find what public key was used to encrypt a message.
+
+     gpg --pinentry-mode cancel --list-packets themessage
+

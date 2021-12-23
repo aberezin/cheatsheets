@@ -16,6 +16,7 @@ find . -type f -perm 777
 # To find files with setuid bit set:
 find . -xdev \( -perm -4000 \) -type f -print0 | xargs -0 ls -l
 
+<<<<<<< HEAD
 # To find files newer than 1 day old and copy elsewhere (remove -p flag in xargs to not be asked):
 find . -type f -ctime -1 -print0 | xargs -0 -p cp -t <dir>
 # or:
@@ -78,3 +79,4 @@ find -L /usr/ports/packages -type l
 # To find and run multiple shell commands (without multiple execs):
 # See: https://stackoverflow.com/questions/5119946/find-exec-with-multiple-commands
 find . -type f -exec sh -c "echo '{}'; cat '{}';" \;
+
