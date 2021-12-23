@@ -90,3 +90,6 @@ port work <name>
 
 # View help on a sub-command:
 port help <command>
+
+# List ports for a port group
+port select --list python
