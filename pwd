@@ -1,2 +1,8 @@
 # Show the absolute path of your current working directory:
 pwd
+
+#get the parent
+echo "$(dirname "`pwd`")"
+
+#or the basename
+#echo "$(basename "`pwd`")"
