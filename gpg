@@ -1,11 +1,18 @@
+#General Notes
+- There are two keyids and both are derived from the fingerprint. The 'short' keyid is the low 32 bits, or last 8 hex digits, of the fingerprint.  The 'long' keyid is the low 64 bits, or last 16 hex digits, of the fingerprint.
+- User Ids can be specified like (https://www.gnupg.org/documentation/manuals/gnupg/Specify-a-User-ID.html)
+--  Enclose exact email addr in <>. Exmample: <bob.jones@someserver.com>
+--  key ID or fongerprint
+--  Exact match of subject's domain name with a leading '/'. Example: /CN=Heinrich Heine,O=Poets,L=Paris,C=FR
+
 # Create a key
  gpg --gen-key
 
 
 # Show keys
-  To list a summary of all keys
+  To list a summary of all keys 
 
-    gpg --list-keys
+    gpg --list-keys --keyid-format {none|short|0xshort|long|0xlong}
 
   To show your public key
 
@@ -14,6 +21,10 @@
   To show the fingerprint for a key
 
     gpg --fingerprint KEY_ID
+
+  To show details of a key 
+
+    gpg -a --export KEY_ID |  gpg --list-packets
 
 # Search for keys
   gpg --search-keys 'user@emailaddress.com'
@@ -160,6 +171,18 @@
 
   Should show sec# instead of just sec.
   
+# Renew an expired key
+    gpg --edit-key <key ID>
+
+    expire 
+    #enter choice for new expiration
+    #if there are subkeys that also expired
+        key 1 #select first subkey
+        expire #then enter new expire
+        #do this for each subkey
+    save
+
+
 # High-quality options for gpg for symmetric (secret key) encryption
   This is what knowledgable people consider a good set of options for 
   symmetric encryption with gpg to give you a high-quality result.

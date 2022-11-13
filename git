@@ -212,3 +212,6 @@ git config --global commit.gpgsign true
 
 # To list unstracked files:
 git ls-files --others --exclude-standard
+
+#show root directory
+git rev-parse --show-toplevel
