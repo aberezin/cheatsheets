@@ -1,3 +1,6 @@
+# To use Extended regex
+sed -E 's/day\s+/night/g' <file>
+
 # To replace all occurrences of "day" with "night" and write to stdout:
 sed 's/day/night/g' <file>
 
