@@ -12,3 +12,5 @@ cheat -s <command>
 
 # To get the current `cheat' version
 cheat -v
+
+#Note also that any .cheat dir in the current wd will be treated as a local cheatsheet path

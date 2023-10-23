@@ -215,3 +215,8 @@ git ls-files --others --exclude-standard
 
 #show root directory
 git rev-parse --show-toplevel
+
+#use a different diff tool 
+git difftool --tool=vimdiff
+#or perm reset the diff tool
+git config --global diff.tool vimdiff

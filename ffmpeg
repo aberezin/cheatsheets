@@ -41,3 +41,12 @@ file '/path/to/file2'
 file '/path/to/file3'
     
 ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
+
+
+
+# To list devices
+ffmpeg -f avfoundation -i :0 -t 5 /tmp/audiocapture.mp3
+
+# To capture 5 sec of audio on dev 0 (see To list devices above)
+ffmpeg -f avfoundation -i ":0" -t 5 /tmp/audiocapture.mp3
+

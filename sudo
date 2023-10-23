@@ -1,2 +1,5 @@
 # Preserve user environment when running command
 sudo -E <cmd>
+
+#edit sudo config
+/opt/local/bin/sudo /opt/local/sbin/visudo
