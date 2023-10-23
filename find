@@ -39,8 +39,10 @@ find . -size +5M -type f -print0 | xargs -0 ls -Ssh | sort -z
 # To find files bigger than 2 Megabyte and list them:
 find . -type f -size +200000000c -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 
-# To find files modified more than 7 days ago and list file information:
-find . -type f -mtime +7d -ls
+# To find files modified more than (+7), less than (-7) 7 24hr periods ago and list file information:
+# Use -mmin for minutes instead of 24hr periods
+# TODO previous cheat used +7d which doesnt work on gnu find.
+find . -type f -mtime +7 -ls
 
 # To find symlinks owned by a user and list file information:
 find . -type l -user <username-or-userid> -ls
@@ -84,3 +86,10 @@ find <path> -newer <target-file>
 
 # To find files and print their sparseness 
 find . -type f -printf "%S\t%p\n"
+
+# To avoid Permission denied' clutter
+find . > files_and_folders 2> >(grep -v 'Permission denied' >&2)
+
+# To print everthing visible (GNU version). See
+find . -type d ! -readable -prune , [expression] -print
+

@@ -55,11 +55,34 @@ dd              delete a line
 d{motion}       delete text that {motion} moves over
 
 # Search and replace with the `:substitute` (aka `:s`) command
+# See also https://vim.fandom.com/wiki/Search_and_replace
+# Se also https://vimdoc.sourceforge.net/htmldoc/usr_27.html
 
 :s/foo/bar/	replace the first match of 'foo' with 'bar' on the current line only
+:s/^\S\+foo/bar/	replace the first match of 'foo' with any leading spaces with 'bar' on the current line only
+:s/foo/bar\r/	replace 'foo' with 'bar\n' (note \r is a newlien in the replacement section)
 :s/foo/bar/g	replace all matches (`g` flag) of 'foo' with 'bar' on the current line only
 :%s/foo/bar/g	replace all matches of 'foo' with 'bar' in the entire file (`:%s`)
-:%s/foo/bar/gc	ask to manually confirm (`c` flag) each replacement
+:%s/foo/bar/gci	ask to manually confirm (`c` flag) each replacement and make search case insensitive (`i` flag)
+:%s/foo/\=@a/g   Replace each occurrence of 'foo' with the contents of register 'a'.
+:%s/foo/<c-r><c-a>/g  Replace each occurrence of 'foo' with the WORD under the cursor (delimited by whitespace).
+                        <c-r><c-a> means that you press Ctrl-R then Ctrl-A.
+                        The WORD under the cursor will be inserted as though you typed it.
+                        Use <c-w> instead of <c-a> to avoid adding whitespace.
+:5,12s/foo/bar/g	Change each 'foo' to 'bar' for all lines from line 5 to line 12 (inclusive).
+:'a,'bs/foo/bar/g	Change each 'foo' to 'bar' for all lines from mark a to mark b inclusive (see Note below).
+:s/[a-m]oo/bar/	replace the first match of 'aoo', or 'boo', or ...'moo' with 'bar' on the current line only
+                    (notes: ^ is NOT, \(foo\) is the backreferenced foo )
+
+:s/Copyright \zs2007\ze All Rights Reserved/2008/  Create a substitution area 
+             This replaces doing: :s/Copyright 2007 All Rights Reserved/Copyright 2008 All Rights Reserved/
+
+#When replacing:
+
+\r is newline, \n is a null byte (0x00).
+\& is ampersand (& is the text that matches the search pattern).
+\0 inserts the text matched by the entire pattern
+\1 inserts the text of the first backreference. \2 inserts the second backreference, and so on.
 
 # Preceding a motion or edition with a number repeats it 'n' times
 # Examples:

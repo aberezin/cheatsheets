@@ -13,11 +13,12 @@ in
     3*) echo "something beginning with 3 found";;
 esac
 
-# To turn on debugging:
+# To turn on off  debugging:
 set -x
-
-# To turn off debugging:
 set +x
+
+# To make script stop processing on errors
+set -e
 
 # Retrieve N-th piped command exit status:
 printf 'foo' | fgrep 'foo' | sed 's/foo/bar/'
