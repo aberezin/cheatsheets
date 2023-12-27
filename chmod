@@ -1,6 +1,12 @@
 # Add execute for all (myscript.sh)
 chmod a+x myscript.sh
 
+# Add execute for all recursively
+chmod -R a+x *
+
+# Add execute for all recurively but only if it is a directory
+chmod -R a+X *
+
 # Set user to read/write/execute, group/global to read only (myscript.sh), symbolic mode
 chmod u=rwx, go=r myscript.sh 
 

@@ -204,8 +204,7 @@ git commit -a -S -m 'Signed commit'
 # check any signatures it finds and list them in its output:
 git log --pretty="format:%h %G? %aN %s"
 
-# Defined the key to use for signing commits:
-git config user.signingkey [KEYID]
+# Defined the key to use for signing commits: git config user.signingkey [KEYID]
 
 # Set signing of commits globally:
 git config --global commit.gpgsign true
@@ -218,5 +217,16 @@ git rev-parse --show-toplevel
 
 #use a different diff tool 
 git difftool --tool=vimdiff
+
 #or perm reset the diff tool
 git config --global diff.tool vimdiff
+
+# To see what files changed since the last commit
+git diff --name-only HEAD~1 HEAD
+
+# To see what files were modified (vs added, renamed, etc) since the last commit
+git diff --diff-filter=M --name-only HEAD~1 HEAD
+# as an aside, the following two commands will produce the same output
+git diff --diff-filter=A --name-only HEAD~1 HEAD
+git diff --diff-filter=D --name-only HEAD HEAD~1
+
