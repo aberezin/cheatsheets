@@ -141,3 +141,8 @@ nmap <F2> "= system("uuidgen")[:-2]<C-M>P
 # Delete every line that has a FOO in it. See `:help global`.
 # The _ in the d _ command ensures registers and clipboards are not changed.
 :g/FOO/d _
+
+#Insert Mode Tricks
+#In insert mode, insert the next char litterally. For example, insert a tab char without interpretting it as a command for statement completion
+ctrl-V + <anychar>
+
