@@ -23,9 +23,14 @@ ffmpeg -i input_video.webm output_video.mp4
 # To convert mp4 to mov
 ffmpeg -i input_video.mp4 -acodec copy -vcodec copy -f mov output_video.mov
 
-# To convert mov to mp4
-ffmpeg -i input_video.mov -vcodec copy -acodec copy output_video.mp4
 
+# To convert mov to mp4
+#as-is
+ffmpeg -i input_video.mov -vcodec copy -acodec copy output_video.mp4
+#compress
+ffmpeg -i IMG_5029.MOV -c:v libx264 -c:a aac -vf format=yuv420p -movflags +faststart output.mp4
+
+#
 # Listen to 10 seconds of audio from a video file
 #
 # -ss : start time
@@ -45,7 +50,7 @@ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
 
 
 # To list devices
-ffmpeg -f avfoundation -i :0 -t 5 /tmp/audiocapture.mp3
+ffmpeg -f avfoundation -list_devices true -i ""
 
 # To capture 5 sec of audio on dev 0 (see To list devices above)
 ffmpeg -f avfoundation -i ":0" -t 5 /tmp/audiocapture.mp3

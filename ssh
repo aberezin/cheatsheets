@@ -31,6 +31,7 @@ ssh -X -t <user>@<host> 'chromium-browser'
 ssh -qND <port> <user>@<host>
 
 # To tunnel an ssh session over the SOCKS proxy on localhost and port 9999:
+# see also https://linuxize.com/post/how-to-setup-ssh-tunneling/
 ssh -o "ProxyCommand nc -x 127.0.0.1:9999 -X 4 %h %p" <user>@<host>
 
 # -X use an xsession, -C compress data, "-c blowfish" use the encryption blowfish:

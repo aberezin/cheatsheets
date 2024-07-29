@@ -93,3 +93,8 @@ find . > files_and_folders 2> >(grep -v 'Permission denied' >&2)
 # To print everthing visible (GNU version). See
 find . -type d ! -readable -prune , [expression] -print
 
+# Find files matching a given pattern, excluding specific paths:
+find root_path -name '*.py' -not -path '*/site-packages/*'
+
+# Find files, sort by modification time
+find .  -printf "%T@ %Tc %p\n" | sort -n

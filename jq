@@ -1,3 +1,6 @@
+# To get the schema
+jq ". | schema"
+
 # To pretty print the json:
 jq "." < filename.json
 
@@ -43,5 +46,30 @@ FOO=b; echo '{ "a":"1" , "b":"2" }'|jq --arg arf "$FOO" '.[$arf]'
 contents="$(jq '.address = "abcde"' test.json)" && \
 echo -E "${contents}" > test.json
 
+# Example bash script with shebang
+# see also https://jqlang.github.io/jq/manual/#advanced-features
+    #!/bin/sh --
+    # total - Output the sum of the given arguments (or stdin)
+    # usage: total [numbers...]
+    # \
+    exec jq --args -MRnf "$0" -- "$@"
+
+    $ARGS.positional |
+    reduce (
+      if . == []
+        then inputs
+        else .[]
+      end |
+      . as $dot |
+      try tonumber catch false |
+      if not or isnan then
+        @json "total: Invalid number \($dot).\n" | halt_error(1)
+      end
+    ) as $n (0; . + $n)
+
+
+
 #See Also
 fx
+jqterm.com
+https://remysharp.com/drafts/jq-recipes

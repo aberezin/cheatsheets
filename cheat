@@ -14,3 +14,13 @@ cheat -s <command>
 cheat -v
 
 #Note also that any .cheat dir in the current wd will be treated as a local cheatsheet path
+
+# Note also where config is
+alias vimcheatsheet="open https://www.fprintf.net/vimCheatSheet.html"
+alias csvdiff="echo see cheat diff-csv #this is a stub"
+alias diff-csv="echo see cheat diff-csv #this is a stub"
+alias cheat="cheat -a"
+if [[ $- == *i* && -z "$INTELLIJ_ENVIRONMENT_READER" ]]; then cheat tips; fi
+alias rtm-syntax='tabview -w max <(cheat rtm-syntax.csv |tail -n+2)'
+alias json_sample_dognames="cat $HOME/.cheat/personal/json-sample-dog-names.json"
+# Do not touch before you read cheat jq
